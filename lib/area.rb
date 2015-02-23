@@ -22,4 +22,15 @@ class Area < ActiveRecord::Base
       Task.create! name: task_name, area: (self.name)
     end
 
+    def undone
+      task_array = []
+      Task.where(area_id: self).find_each do |t|
+        if t.complete == false
+          task_array.push(t)
+        end
+      end
+      task_array
+    end
+
+
 end
