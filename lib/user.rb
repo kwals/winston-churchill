@@ -17,11 +17,9 @@ class User < ActiveRecord::Base
 
   def search string
     s = self.id
-    binding.pry
     big_array = []
     Area.where(user_id: s).find_each do |a|
       Task.where(area_id: a).find_each do |t|
-        binding.pry
         if t.name.include? string
           big_array.push(t)
         end
@@ -39,7 +37,6 @@ class User < ActiveRecord::Base
     undone_array = []
      Area.where(user: self).find_each do |a|
       undone_array.push(a.undone)
-      binding.pry
       end
     undone_array
     end 
@@ -48,7 +45,6 @@ class User < ActiveRecord::Base
     all_array = []
      Area.where(user: self).find_each do |a|
       all_array.push(a.all_tasks)
-      binding.pry
       end
     all_array
     end 

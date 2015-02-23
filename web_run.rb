@@ -19,8 +19,9 @@ class DoneWeb < Sinatra::Base
   end
 
   get '/tasks/all' do
-    r = current_user.list_all
-    r.to_json
+    q = current_user.list_all
+    @tasks = q.to_json
+    erb :todo_list
   end
 
   get "/tasks/nextup" do 
@@ -50,14 +51,15 @@ class DoneWeb < Sinatra::Base
     erb "You prioritized #{t.name}. Good choice."
   end
 
-# Search function is not pretty, but it works. Let's refactor.
   get '/search' do
     string = params[:phrase]
     r = current_user.search string
-    binding.pry
     r.to_json
   end
 
+  # Need a function to ADD tasks
+  # Need a function to DELETE tasks
+  # Would like a "geterdone" feature
 
 end
 
