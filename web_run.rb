@@ -55,7 +55,8 @@ class DoneWeb < Sinatra::Base
   get '/search' do
     string = params[:phrase]
     r = current_user.search string
-    r.to_json
+    @tasks = r 
+    erb :todo_list
   end
 
   # Need a function to ADD tasks
