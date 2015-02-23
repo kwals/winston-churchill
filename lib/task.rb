@@ -15,7 +15,7 @@ class Task < ActiveRecord::Base
     self.save!
   end
 
-  def due due_date
+  def due_by due_date
     # this should assign it a a due date
     d = Date.parse(due_date)
     self.due = d
