@@ -14,13 +14,14 @@ class DoneWeb < Sinatra::Base
     end
 
   get '/tasks' do
-    r = current_user.list_undone.each {|x| x.to_json}
-    erb "#{r}"
+    r = current_user.list_undone
+    @tasks = r
+    erb :todo_list
   end
 
   get '/tasks/all' do
     q = current_user.list_all
-    @tasks = q.to_json
+    @tasks = q
     erb :todo_list
   end
 

@@ -7,6 +7,7 @@
       <div class="container">
         <a href="/tasks">List tasks that are not yet completed</a>
         <a href="/tasks/all">View all tasks</a>
+        </div>
 
         <div class="well">
           <h2> Bob's list of stuff to get done</h2>
@@ -23,7 +24,8 @@
             <tbody>
               <% @tasks.each do |task| %>
               <tr>
-                <td><%= Area.find_by(id:task["area_id"]).name %></td>
+              <% binding.pry %>
+                <td><%= task["area_id"] %></td>
                 <td><%= task["name"] %></td>
                 <td><%= task["priority_level"] %></td>
                 <td><%= task["due"] %></td>

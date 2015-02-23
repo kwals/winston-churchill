@@ -23,21 +23,11 @@ class Area < ActiveRecord::Base
     end
 
     def undone
-      task_array = []
-      Task.where(area_id: self).find_each do |t|
-        if t.complete == false
-          task_array.push(t)
-        end
-      end
-      task_array
+      Task.where(area_id: self, complete: false)
     end
 
     def all_tasks
-      all_array = []
-      Task.where(area_id: self).find_each do |t|
-        all_array.push(t)
-      end
-      all_array
+      Task.where(area_id: self)
     end
 
 

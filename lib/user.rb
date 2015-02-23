@@ -36,7 +36,9 @@ class User < ActiveRecord::Base
   def list_undone
     undone_array = []
      Area.where(user: self).find_each do |a|
-      undone_array.push(a.undone)
+        a.undone.each do |y|
+          undone_array.push(y)
+        end
       end
     undone_array
     end 
@@ -44,7 +46,9 @@ class User < ActiveRecord::Base
   def list_all
     all_array = []
      Area.where(user: self).find_each do |a|
-      all_array.push(a.all_tasks)
+      a.all_tasks.each do |q| 
+          all_array.push(q)
+        end
       end
     all_array
     end 
