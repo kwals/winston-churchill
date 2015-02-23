@@ -43,4 +43,13 @@ class User < ActiveRecord::Base
     undone_array
     end 
 
+  def list_all
+    all_array = []
+     Area.where(user: self).find_each do |a|
+      all_array.push(a.all_tasks)
+      binding.pry
+      end
+    all_array
+    end 
+
 end

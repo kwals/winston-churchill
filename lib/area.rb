@@ -32,5 +32,13 @@ class Area < ActiveRecord::Base
       task_array
     end
 
+    def all_tasks
+      all_array = []
+      Task.where(area_id: self).find_each do |t|
+        all_array.push(t)
+      end
+      all_array
+    end
+
 
 end
