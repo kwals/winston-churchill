@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
     a = Area.order(hierarchy: :desc).first
     t = Task.where(area_id: a.id)
     t.where.not(due: nil).order("RANDOM()").first
+    # Oops, make sure this doesn't include complete tasks!
   end
 
   def search string

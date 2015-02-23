@@ -22,7 +22,7 @@ class Task < ActiveRecord::Base
     self.save!
   end
 
-  def prioritize
+  def prioritize!
     # this should increment the priority_level
     self.priority_level += 1
     self.save!
