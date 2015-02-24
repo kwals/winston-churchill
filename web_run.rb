@@ -6,6 +6,12 @@ require "./lib/all"
 class DoneWeb < Sinatra::Base
   set :bind, '0.0.0.0'
   set :port, '3000'
+  set :method_override, true
+
+  include ERB::Util
+
+
+# Note to self, get rid of extras
 
     def current_user 
       # username = request.env["HTTP_AUTHORIZATION"]
@@ -30,9 +36,9 @@ class DoneWeb < Sinatra::Base
     r.to_json
   end
 
-  patch '/complete/:id' do
-    n = params[:id]
-    t = Task.find_by(id: n)
+  patch '/complete' do
+    @n = params[:id]
+    t = Task.find_by(id: @n)
     t.complete!
     erb "You completed #{t.name}. 加油！！！"
   end
@@ -59,7 +65,14 @@ class DoneWeb < Sinatra::Base
     erb :todo_list
   end
 
-  # Need a function to ADD tasks
+  post '/add' do
+    area = params[:area]
+    task = params[:task]
+    current_user.new_task area, task
+    # @tasks = current_user.list_all
+    # erb :todo_list
+  end
+
   # Need a function to DELETE tasks
   # Would like a "geterdone" feature
 

@@ -8,7 +8,6 @@ class Task < ActiveRecord::Base
   #     t.date :due
   #     t.belongs_to :area
 
-
   def complete!
     # this should change the boolean to true
     self.complete = true

@@ -6,10 +6,21 @@
     <body>
       <div class="container">
         <a href="/tasks">List tasks that are not yet completed</a>
+
+      <!--   <div class="well">
+          <form action="/"
+
         <a href="/tasks/all">View all tasks</a>
-        </div>
+        </div> -->
 
         <div class="well">
+          <form action='/add' method="POST">
+            <input name="area">
+            <input name="task">
+            <button class="btn btn-primary">Create!</button>
+            </form>
+            </div>
+
           <h2> Bob's list of stuff to get done</h2>
           <table class="table">
             <thead>
@@ -24,12 +35,17 @@
             <tbody>
               <% @tasks.each do |task| %>
               <tr>
-              <% binding.pry %>
-                <td><%= task["area_id"] %></td>
-                <td><%= task["name"] %></td>
-                <td><%= task["priority_level"] %></td>
-                <td><%= task["due"] %></td>
-                <td><%= task["created_at"] %></td>
+                <td><%= h(task["area_id"]) %></td>
+                <td><%= h(task["name"]) %></td>
+                <td><%= h(task["priority_level"]) %></td>
+                <td><%= h(task["due"]) %></td>
+                <td><%= h(task["created_at"]) %></td>
+                <td><form action="/complete" method="_method">
+                <input type="hidden" name="_method" value="patch">
+                <input type="hidden" name="id" value="<%= task['id'] %>" >
+                <button class="btn btn-secondary">Completed!</button>
+                </form>
+                </td>
               </tr>
               <% end %>
             </tbody>
